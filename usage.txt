@@ -1,0 +1,3 @@
+# My Usage Notes
+
+All the content in this directory should be placed in a folder called 'chrome' within the profile folder.
