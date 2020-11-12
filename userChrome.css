@@ -17,6 +17,7 @@
 @import url(chrome/minimal_text_fields.css);
 @import url(chrome/minimal_toolbarbuttons.css);
 @import url(chrome/urlbar_centered_text.css);
+@import url(chrome/multi-row_tabs.css);
 
 /* Apply your custom modifications after imports */
 
