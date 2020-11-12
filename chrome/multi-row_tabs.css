@@ -11,8 +11,8 @@ See the above repository for updates as well as full license text. */
 
 :root{
     --multirow-n-rows: 3;
-    --multirow-tab-min-width: 100px;
-    --multirow-tab-dynamic-width: 1; /* Change to 0 for fixed-width tabs using the above width. */
+    --multirow-tab-min-width: 150px;
+    --multirow-tab-dynamic-width: 0; /* Change to 0 for fixed-width tabs using the above width. */
 }
 
 /* Scrollbar can't be clicked but the rows can be scrolled with mouse wheel */
