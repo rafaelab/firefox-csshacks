@@ -13,6 +13,8 @@
 @import url(chrome/dark_checkboxes_and_radios.css);
 @import url(chrome/minimal_text_fields.css);
 @import url(chrome/multi-row_tabs.css);
+@import url(chrome/hide_dot_pinned_tab.css);
+
 
 /* Apply your custom modifications after imports */
 
