@@ -10,7 +10,7 @@ See the above repository for updates as well as full license text. */
   #titlebar{ -moz-appearance: none !important; }
 
   @media (-moz-os-version: windows-win10){
-    :root[sizemode="maximized"][tabsintitlebar] :-moz-any(#browser,#customization-container,#toolbar-menubar){ margin-top: 8px !important; }
+    :root[sizemode="maximized"][tabsintitlebar] :is(#browser,#customization-container,#toolbar-menubar){ margin-top: 8px !important; }
   }
 
   #mainPopupSet,
@@ -30,11 +30,19 @@ See the above repository for updates as well as full license text. */
     top: auto !important;
   }
 
-  #urlbar[open] > .urlbarView{ margin-block: 0px calc(var(--urlbar-height) + 1px) !important; box-shadow: none !important; }
+  .urlbarView-body-inner{ border-top-style: none !important; }
 
   /* Yeah, removes window controls. Likely not wanted on bottom row  */
   #TabsToolbar > .titlebar-buttonbox-container{ display: none }
   #toolbar-menubar > .titlebar-buttonbox-container{ order: 1000 }
+
+  /* Fullscreen mode support */
+  #navigator-toolbox[inFullscreen]{ margin-top: 0 !important }
+  #navigator-toolbox[inFullscreen][style*="margin-top"]{ visibility: collapse }
+  #fullscr-toggler{ bottom: 0; top: unset !important; }
+  
+  /* These two rules exist for compatibility with autohide_toolbox.css */
+  #navigator-toolbox{ bottom: -1px; transform-origin: bottom }
 
   /**************
   Menubar options
