@@ -4,9 +4,6 @@ See the above repository for updates as well as full license text. */
 /* Makes tabs to appear on multiple lines below the web content */
 /* Tab reordering will not work and can't be made to work */
 
-/* !!!WARNING!!! */
-/* This style completely breaks extension popups. As a workaround, you can pin the extension buttons to overflow menu which allows them to work. */
-
 /* Make menubar enabled for getting window controls in correct place. Menubar options will be shown as overlay when mouse is at top-left corner */
 
 /* It's recommended to move tabs new-tab-button outside tabs toolbar */
@@ -17,7 +14,10 @@ See the above repository for updates as well as full license text. */
 /* So this setting does nothing on Fx65 and all tab rows will be shown */
 
 @-moz-document url(chrome://browser/content/browser.xhtml){
-
+  
+  /* Dummy variable to support both versions 89-90 */
+  :root{ --tab-block-margin: var(--proton-tab-block-margin) }
+  
   :root{
     --multirow-toolbar-height: 40px;
     --multirow-top-padding: 0px;
@@ -25,7 +25,7 @@ See the above repository for updates as well as full license text. */
     --multirow-tab-min-width: 100px;
     --multirow-tab-dynamic-width: 1; /* Change to 0 for fixed-width tabs using the above width. */
   }
-  @media (-moz-os-version: windows-win10){
+  @media (-moz-os-version: windows-win7),(-moz-os-version: windows-win10){
     :root[sizemode="maximized"]{ --multirow-top-padding: 8px }
   }
   :root[uidensity="compact"]{--multirow-toolbar-height: 32px}
@@ -38,7 +38,9 @@ See the above repository for updates as well as full license text. */
 
   #nav-bar{
     position: fixed !important;
-    display: flex;
+    /* For some reason -webkit-box behaves internally like -moz-box, but can be used with fixed position. display: flex would work too but it breaks extension menus. */
+    display: -webkit-box;
+    -webkit-box-flex: 1;
     margin-left: 30px;
     width: calc(100vw - 30px);
     top: var(--multirow-top-padding);
@@ -150,14 +152,14 @@ See the above repository for updates as well as full license text. */
     overflow: -moz-hidden-unscrollable;
     display: block;
     --scrollbutton-display-model: none;
-    --uc-scrollbox-max-height: calc((var(--tab-min-height) + 2 * var(--proton-tab-block-margin,0px)) * var(--multirow-n-rows));
+    --uc-scrollbox-max-height: calc((var(--tab-min-height) + 2 * var(--tab-block-margin,0px)) * var(--multirow-n-rows));
   }
   
   :root[inFullscreen] .scrollbox-clip[orient="horizontal"]:not(:hover),
   :root[inFullscreen] #tabbrowser-arrowscrollbox:not(:hover){ --uc-scrollbox-max-height: 1px; min-height: 1px !important; }
 
   .tabbrowser-tab{
-    height: calc((var(--tab-min-height) + 2 * var(--proton-tab-block-margin,0px))) !important;
+    height: calc((var(--tab-min-height) + 2 * var(--tab-block-margin,0px))) !important;
     scroll-snap-align: start;
   }
 

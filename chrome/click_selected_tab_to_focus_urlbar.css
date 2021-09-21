@@ -10,14 +10,17 @@ See the above repository for updates as well as full license text. */
 /* Make selected tab unclickable so click goes to the capture box, obviously it can't be clicked at all anymore */
 /* remove the :not([pinned]) bit to make clicking pinned tab AROUND the tab-icon focus urlbar*/
 
+:root{ --tab-block-margin: var(--proton-tab-block-margin) }
+
 .tabbrowser-tab:not([pinned])[selected]{ pointer-events: none }
 
 /* Add back pointer-events to several elements so UI remains usable */
 /* The selected tab can be clicked normally from the icon */
-#tabbrowser-tabs toolbarbutton,
+#TabsToolbar toolbarbutton,
+#TabsToolbar toolbaritem,
 .tabbrowser-tab,
-.tabbrowser-tab .tab-close-button,
-.tabbrowser-tab .tab-icon-image{
+.tab-close-button,
+.tab-icon-stack{
   pointer-events: auto
 }
 
@@ -28,15 +31,17 @@ See the above repository for updates as well as full license text. */
   top: 0;
   left: 0;
   width: calc(100vw - 138px);
-  height: var(--tab-min-height);
+  height: calc(var(--tab-min-height) + 2*var(--tab-block-margin));
   content: "";
+  pointer-events: auto;
 }
+:root[sizemode="normal"]:not([customizing]) #urlbar-input-container::before{ left: 40px; width: calc(100vw - 138px -80px) }
 
 #urlbar-input-container:focus-within::before{ display: none !important; }
 
 /* Make tabs appear over the invisible box */
-:root:not([customizing]) #tabbrowser-tabs{
+:root:not([customizing]) #TabsToolbar-customization-target{
   position: relative;
   z-index: 1;
   pointer-events: none
-} 
+}

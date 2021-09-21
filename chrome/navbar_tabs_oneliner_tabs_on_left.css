@@ -8,8 +8,11 @@ See the above repository for updates as well as full license text. */
 Get window_control_placeholder_support.css
 Window controls will be all wrong without it
 */
-
-:root[proton][uidensity="compact"]{ --proton-tab-block-margin: 2px !important; }
+:root{ --tab-block-margin: var(--proton-tab-block-margin) }
+:root[uidensity="compact"]{
+  --tab-block-margin: 2px !important;
+  --proton-tab-block-margin: 2px !important;
+  }
 
 /* Modify these to change relative widths or default height */
 #navigator-toolbox{
@@ -52,7 +55,7 @@ Window controls will be all wrong without it
 }
 
 #tabbrowser-tabs{
-  --tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--proton-tab-block-margin,0px)) !important;
+  --tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--tab-block-margin,0px)) !important;
 }
 
 #toolbar-menubar[autohide="true"] > .titlebar-buttonbox-container{
@@ -74,7 +77,7 @@ Window controls will be all wrong without it
 /* Rules specific to window controls on right layout */
 @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled"){
   :root:not([inFullscreen]) #TabsToolbar-customization-target > .titlebar-spacer[type="pre-tabs"]{
-    width: var(--uc-window-drag-space-width) !important;
+    width: var(--uc-window-drag-space-post) !important;
     display: -moz-box !important; 
   }
   #TabsToolbar > .titlebar-buttonbox-container{ display: -moz-box; }
